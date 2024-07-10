@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Samkit Saraf">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <title>Sign up Form</title>
+    <style>
+    *{
+        font-family:Arial;
+        box-sizing: border-box;
+    }
+    main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height: 50vh;
+        max-width: 450px;
+    }
+    .form-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0;
+        font-weight: 300;
+    }
+    form {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+            "fname lname"
+            "mobile mobile"
+            "email email"
+            "pass cpass"
+            "check check"
+        ;
+        height: 260px;
+        margin: 0 0 0 0;
+    }
+    input{
+        border-radius: 5px;
+        border: #dedede solid 1px;
+        padding: 5px;
+        padding-left: 10px;
+        margin: 6px 0px 6px 0px;
+    }
+    input:focus {
+        border-color: #b0d5f3;
+        outline: none;
+        box-shadow: 0 0 10px #b0d5f3;
+    }
+    .fname{
+        grid-area: fname;
+        margin-right: 10px;
+    }
+    .lname{
+        grid-area: lname;
+        margin-left: 10px;
+    }
+    .mobile{
+        grid-area: mobile;
+    }
+    .email{
+        grid-area: email;
+    }
+    .pass{
+        grid-area: pass;
+        margin-right: 10px;
+    }
+    .cpass{
+        grid-area: cpass;
+        margin-left: 10px;
+    }
+    .check{
+        grid-area: check;
+        display: flex;
+        align-items: center;
+        border-radius: 0;
+    }
+    label{
+        margin-left: 5px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    p{
+        color: #8a8a8a;
+        margin-left: 30px;
+        font-size: 12px;
+    }
+    p>a{
+        text-decoration: none;  
+        color: #5c9ad1;
+    }
+    .btn-cont{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .btn{
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+        border: 0;
+    }
+    .rbtn{
+        vertical-align: center;
+        background-color: #428bca;
+        color:white;
+        padding: 1px 4px 2px 4px;
+        font-size: 9px;
+        border-radius: 2px;
+    }
+    .registerBtn{
+        background-color: #428bca;
+        flex: 1;
+    }
+    .signInBtn{
+        background-color: #5cb85c;
+        flex: 1;
+    }
+    </style>
+</head>
+<body>
+    <main>
+        <h1 class="form-title">Sign Up</h1>
+        <form action="submit">
+            <input class="fname" type="text" placeholder="First Name" />
+            <input class="lname" type="text" placeholder="Last Name" />
+            <input class="mobile" type="number" placeholder="Mobile No." />
+            <input class="email" type="email" placeholder="Email Address" />
+            <input class="pass" type="password" placeholder="Password" />
+            <input class="cpass" type="password" placeholder="Confirm Password" />
+            <span class="check">
+                <input type="checkbox" />
+                <label class="check" for="termsAndConditions">I&nbsp;Agree</label>
+                <p class="desc">By clicking <span class="rbtn">Register</span>, you agree to the <a
+                        href="#">Terms&nbspand&nbspConditions</a> set out by this site, including our Cookie Use.</p>
+            </span>
+        </form>
+        <div class="btn-cont">
+            <button type="submit" class="btn registerBtn">Register</button>
+            <button type="button" class="btn signInBtn">Sign In</button>
+        </div>
+    </main>
+</body>
+</html>
