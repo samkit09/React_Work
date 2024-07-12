@@ -1,0 +1,81 @@
+1. Why are closures useful in JavaScript? Give an example use case.
+A - Closures are created which allows the function to access variables from outer function. This is because whenever a function is created, it retains references to variables in outer function's scope and so is accessible from inner function.
+Example use case: Closures can be used to create private variables. -
+function increase() {
+	let num = 0;
+	function plus(){
+		num++
+		return num;
+	}
+	return plus;
+}
+const inc_by_one = increase();
+console.log(inc_by_one()); // output: 1
+console.log(inc_by_one()); // output: 2
+In the above example, num acts as a private variable accessible only by the inner function plus.
+
+-----------------------------------------------------------------------------------------------------------------
+
+2. When should you choose to use “let” or “const”
+A - When you want or expect value of a variable to values to change then use let to declare that variable. If you do not want the value of variable to change in that case use const.
+
+-----------------------------------------------------------------------------------------------------------------
+
+3. Give an example of a common mistake related to hoisting and explain how to fix it.
+A - A common mistake related to hoisting is using a variable before it's declared with var and expecting to contain value assigned later.
+example - 
+
+console.log(num) // actual output: undefined, expected (mistake): 9 
+var num = 9; 
+
+This code will not give an error as var is hoisted to top and is accessible but when it gets hoisted its value is undefined. So instead of '9' the code will print 'undefined' instead. 
+
+-----------------------------------------------------------------------------------------------------------------
+
+4. What will the outcome of each console.log() be after the function calls? Why?
+
+const arr = [1, 2];
+function foo1(arg) {
+  arg.push(3);
+}
+foo1(arr);
+console.log(arr);
+
+Output : [1,2,3]
+A - Since arrays are passed by reference, foo1 pushed '3' into 'arr' so the changes are made in the array itself. That's why 3 get added to 'arr'.
+
+--------------------------------------
+
+function foo2(arg) {
+  arg = [1, 2, 3, 4];
+}
+foo2(arr);
+console.log(arr);
+
+Output : [1,2,3]
+A - 'arg' is a local variable and foo2 makes 'arg' to point to a new array [1,2,3,4] and so it does not affect the original array.
+
+--------------------------------------
+
+function foo3(arg) {
+  let b = arg;
+  b.push(3);
+}
+foo3(arr);
+console.log(arr);
+
+Output : [1,2,3,3]
+A - reference of original arr is passed as 'arg' and foo3 assigns this reference to local variable b. Because the modification is done on the original arr, '3' gets added.
+
+--------------------------------------
+
+function foo4(arg) {
+  let b = arg;
+  b = [1, 2, 3, 4];
+}
+foo4(arr);
+console.log(arr);
+
+Output : [1,2,3,3]
+A - Just as in case of foo2, a new array is being created [1,2,3,4] and is assigned to local variable b. Again, no modifications were done on the original arr so it will remain the same.
+-----------------------------------------------------------------------------------------------------------------
