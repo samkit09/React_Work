@@ -7,11 +7,22 @@ they are defined on the class and can be called without creating instances of th
 Example - all(), allSettled(), any(), race(), etc.
 
 2. How does JavaScript handle concurrency?----------------------------------------------
-Event loops are used to handle concurrency in JavaScript. It allows operations in a 
-non-blocking way even though JavaScript is a single-threaded language. Event loops check 
-the call stack, task queue, and microtask queue. If the call stack is empty, it takes the 
-first task from the queue and pushes it to the call stack to be executed. This allows for 
-asynchronous operations to be performed as intended.
+Event loops along with the help of callstack, web api, and callback queue are used to 
+handle concurrency in JavaScript. It allows operations in a non-blocking way even though 
+JavaScript is a single-threaded language. Event loops check the callstack, taskqueue, and 
+microtask queue. If the call stack is empty, it takes the first task from the queue and 
+pushes it to the call stack to be executed. This allows for asynchronous operations to be 
+performed as intended.
+a. Callstack: The call stack is a data structure that keeps track of function calls in the 
+order they need to be executed. When a function is called, it is pushed onto the stack. 
+When the function returns, it is popped off the stack.
+b. Web APIs are provided by the browser to handle asynchronous operations such as 
+setTimeout, HTTP requests (fetch, XMLHttpRequest), and DOM events in a non-blocking way. 
+When an asynchronous operation is called, the function is executed and passed 
+to the web API, which handles the operation independently of the call stack.
+c. Callback Queue - Once the web API completes its task, the callback function is pushed in 
+the callback queue. It is basicallea list of functions that are ready to be executed once 
+the call stack is empty.
 
 3. What is async/await? How does it differ from using the promise instance methods?-----
 The async keyword is used to declare a function as asynchronous, which means it returns 
