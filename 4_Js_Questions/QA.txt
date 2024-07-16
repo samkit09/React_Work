@@ -1,0 +1,79 @@
+1. What is the difference between instance methods and static methods?------------------
+Instance methods are methods that are called on instances of prototypes. In other words, 
+they are functions defined within a class that can be called in instances of the class. 
+Examples - catch(), finally(), then(), etc.
+Static methods are methods that can be called on the prototype itself. In other words, 
+they are defined on the class and can be called without creating instances of that class.
+Example - all(), allSettled(), any(), race(), etc.
+
+2. How does JavaScript handle concurrency?----------------------------------------------
+Event loops are used to handle concurrency in JavaScript. It allows operations in a 
+non-blocking way even though JavaScript is a single-threaded language. Event loops check 
+the call stack, task queue, and microtask queue. If the call stack is empty, it takes the 
+first task from the queue and pushes it to the call stack to be executed. This allows for 
+asynchronous operations to be performed as intended.
+
+3. What is async/await? How does it differ from using the promise instance methods?-----
+The async keyword is used to declare a function as asynchronous, which means it returns 
+a Promise. This function can contain await expressions.
+The await keyword is used inside an async function to pause execution until a Promise 
+is settled that is either resolved or rejected. It makes asynchronous code act like 
+synchronous code, that in turn makes it easier to work on.
+Example - 
+async function get_process() {
+  try {
+    const data = await get_data();
+    const result = await process_data(data);
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+4. Can you use await outside of an async function?--------------------------------------
+No, we cannot use await outside of an async function. The await keyword can only be used 
+inside functions with the async keyword. If we use it outside an async function, it will 
+result in a syntax error.
+
+5. What is callback hell and why is it considered a problem?----------------------------
+It is a situation where multiple nested callback functions are used, making the code hard 
+to read and maintain.
+It often makes the pyramid kind of structure due to repeated nesting of the callback 
+functions. This can make debugging and understanding the code very challenging. To avoid 
+these async and await can be used. 
+Example of callback hell - 
+function get(callback) {
+  setTimeout(() => {
+    callback(null, 'data');
+  }, 1000);
+}
+function process(data, callback) {
+  setTimeout(() => {
+    callback(null, 'processed');
+  }, 1000);
+}
+function save(process, callback) {
+  setTimeout(() => {
+    callback(null, 'saved');
+  }, 1000);
+}
+// Callback hell (pyramid-like structure)
+get((err, data) => {
+  if (err) {
+    console.log(err);
+  } else {
+    process(data, (err, process) => {
+      if (err) {
+        console.log(err);
+      } else {
+        save(process, (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(result); // Output: saved
+          }
+        });
+      }
+    });
+  }
+});
