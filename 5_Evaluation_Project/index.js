@@ -226,7 +226,7 @@ const Controller = ((model, view) => {
 		});
 	};
 
-	const bindEventListeners = () => {
+	const addEventListener = () => {
 		document
 			.querySelector(".inventory-container ul")
 			.addEventListener("click", (e) => {
@@ -259,7 +259,7 @@ const Controller = ((model, view) => {
 			view.renderInventory(state.inventory);
 			view.renderCart(state.cart);
 		});
-		bindEventListeners();
+		addEventListener();
 		init();
 	};
 
